@@ -36,13 +36,10 @@ public class StoreController {
 	
 	@RequestMapping(value="/read", method=RequestMethod.GET)
 	public ModelAndView read(@RequestParam("name") String name) {
-		System.out.println("read by name: " + name);
 		List<Store> stories = storeService.readByName(name);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("stories", stories);
-		
-		System.out.println("size: " + stories.size());
 		
 		return mv;
 	}
