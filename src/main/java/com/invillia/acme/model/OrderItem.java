@@ -25,6 +25,15 @@ public class OrderItem {
 	private Order order;
 	
 	
+	public OrderItem() { }
+	
+	public OrderItem(String description, BigDecimal unitPrice, BigInteger quantity) {
+		setDescription(description);
+		setUnitPrice(unitPrice);
+		setQuantity(quantity);
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
