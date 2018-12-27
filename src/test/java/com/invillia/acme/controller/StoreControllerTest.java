@@ -2,10 +2,7 @@ package com.invillia.acme.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +17,9 @@ import com.invillia.acme.model.Store;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StoreControllerTest {
+	
+	
+	private final String baseUrl = "http://localhost:9000/store/";
 		
 	
 	// Create Store
@@ -27,8 +27,7 @@ public class StoreControllerTest {
     public void testCreateStore() throws URISyntaxException {
     	RestTemplate rest = new RestTemplate();
     	
-    	final String baseUrl = "http://localhost:9000/store/create";
-        URI uri = new URI(baseUrl);
+        URI uri = new URI(baseUrl + "create");
         
         Store store = new Store("Oficina Tavares", "R. Aldo Tavares, 12");
         
@@ -45,8 +44,7 @@ public class StoreControllerTest {
     public void testUpdateStore() throws URISyntaxException {
     	RestTemplate rest = new RestTemplate();
     	
-    	final String baseUrl = "http://localhost:9000/store/update/6";
-        URI uri = new URI(baseUrl);
+        URI uri = new URI(baseUrl + "update/6");
         
         Store store = new Store("Oficina Sol", "R. Campos Sales, 323");
         
@@ -60,10 +58,8 @@ public class StoreControllerTest {
     @Test
     public void testReadStoreByParameters() throws URISyntaxException {
     	RestTemplate rest = new RestTemplate();
-    	
-    	final String baseUrl = new String("http://localhost:9000/store/read?name=Oficina%20Tavares");
-    	
-        URI uri = new URI(baseUrl);
+    	    	
+        URI uri = new URI(baseUrl + "read?name=Oficina%20Tavares");
         
         List<Store> stories = (List<Store>) rest.getForObject(uri, List.class);
         
