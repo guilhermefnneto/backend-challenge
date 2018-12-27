@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +27,8 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar confirmation;
 	
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private OrderStatus status;
 	
 	@ManyToOne
 	private Store store;
@@ -35,6 +38,14 @@ public class Order {
 	
 	@OneToOne
 	private Payment payment;
+	
+	
+	
+	public Order() { }
+	
+	public Order(Long id) {
+		this.id = id;
+	}
 	
 	
 	
@@ -58,11 +69,11 @@ public class Order {
 		this.confirmation = confirmation;
 	}
 	
-	public String getStatus() {
+	public OrderStatus getStatus() {
 		return status;
 	}
 	
-	public void setStatus(String status) {
+	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 	
