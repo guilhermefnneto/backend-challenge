@@ -1,7 +1,18 @@
 package com.invillia.acme.model;
 
-public class Store {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+
+@Entity(name="store")
+public class Store {
+	
+
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
 	private String name;
 	private String address;
 	
@@ -13,6 +24,10 @@ public class Store {
 		setAddress(address);
 	}
 	
+	
+	public Long getId() {
+		return id;
+	}
 	
 	public String getName() {
 		return name;

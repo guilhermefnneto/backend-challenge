@@ -3,15 +3,44 @@ package com.invillia.acme.model;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity(name="sorder")
 public class Order {
 
 	
-	private String address;
-	private Calendar confirmation;
-	private String status;
-	private Store store;
-	private List<OrderItem> orderItems;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	
+	private String address;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar confirmation;
+	
+	private String status;
+	
+	@ManyToOne
+	private Store store;
+	
+	@OneToMany(mappedBy="order")
+	private List<OrderItem> orderitem;
+	
+	@OneToOne
+	private Payment payment;
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
 	
 	public String getAddress() {
 		return address;
@@ -45,13 +74,20 @@ public class Order {
 		this.store = store;
 	}
 
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
+	public List<OrderItem> getOrderItem() {
+		return orderitem;
 	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
+	public void setOrderItem(List<OrderItem> orderitem) {
+		this.orderitem = orderitem;
 	}
 	
+	public Payment getPayment() {
+		return payment;
+	}
+	
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
 	
 }

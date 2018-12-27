@@ -3,14 +3,31 @@ package com.invillia.acme.model;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+
+@Entity(name="sorderitem")
 public class OrderItem {
 
+	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	
 	private String description;
 	private BigDecimal unitPrice;
 	private BigInteger quantity;
+	
+	@ManyToOne
 	private Order order;
 	
+	
+	public Long getId() {
+		return id;
+	}
 	
 	public String getDescription() {
 		return description;
