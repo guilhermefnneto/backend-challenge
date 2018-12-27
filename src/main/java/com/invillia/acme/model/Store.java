@@ -19,6 +19,10 @@ public class Store {
 	
 	public Store() { }
 	
+	public Store(Long id) {
+		this.id = id;
+	}
+		
 	public Store(String name, String address) {
 		setName(name);
 		setAddress(address);
