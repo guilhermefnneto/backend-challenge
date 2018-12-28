@@ -2,6 +2,7 @@ package com.invillia.acme.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,19 +43,34 @@ public class OrderController {
 	}
 	
 	
-//	@RequestMapping(name="/{orderid}/additem", method=RequestMethod.POST)
-//	public ModelAndView addItem(@PathVariable("orderid") Long orderid, @RequestBody OrderItem pOrderItem) {
-//		ModelAndView mv = new ModelAndView();
-//		
-//		Order rOrder = orderService.read(new Order(orderid));
-//		if (rOrder != null) {
-//			boolean added = orderService.addItem(rOrder, pOrderItem);
-//			mv.addObject("addeditem", added);
-//		} else {
-//			mv.addObject("addeditem", "order not found");
-//		}
-//		
-//		return mv;
-//	}
+	@RequestMapping(value="/read", method=RequestMethod.GET)
+	public ModelAndView read(@RequestParam("id") Long id) {
+		ModelAndView mv = new ModelAndView();
+		
+		Order rOrder = orderService.read(new Order(id));
+		if (rOrder != null) {			
+			mv.addObject("read", rOrder);
+		} else {
+			mv.addObject("read", "order not found");
+		}
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="/refund/{id}", method=RequestMethod.PUT)
+	public ModelAndView refund(@PathVariable("id") Long id) {
+		ModelAndView mv = new ModelAndView();
+		
+		Order rOrder = orderService.read(new Order(id));
+		if (rOrder != null) {
+			boolean refunded = orderService.refund(rOrder);
+			mv.addObject("refund", refunded);
+		} else {
+			mv.addObject("refund", "order not found");
+		}
+		
+		return mv;
+	}
 	
 }
