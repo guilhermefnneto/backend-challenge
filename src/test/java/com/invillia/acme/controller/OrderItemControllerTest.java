@@ -27,9 +27,9 @@ public class OrderItemControllerTest {
 	public void testCreateOrderItem() throws URISyntaxException {
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI(baseUrl + "create?orderid=2");
+		URI uri = new URI(baseUrl + "create?orderid=1");
 
-		OrderItem orderItem = new OrderItem("Macaco", new BigDecimal(150.00), new BigInteger("1"));
+		OrderItem orderItem = new OrderItem("Chave de roda", new BigDecimal(80.00), new BigInteger("2"));
 		
 		HttpEntity<OrderItem> request = new HttpEntity<>(orderItem);
 		
