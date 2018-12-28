@@ -1,0 +1,17 @@
+Observações sobre as implementações do desafio:
+
+1 - Fiz uso da API de Persistência JPA/Hibernate. As classes de negócio estão anotadas em conformidade com a especificação JPA.
+
+2 - Para cada Controller foi criado um teste unitário. As classes correspondentes se encontram em src/test/.../controller/.
+
+
+Faltas:
+
+3 - A requisição dos testes funcionaram. Ao executar os testes, pode-se notar que as inserções, atualizações e recuperações são realizadas, no lado do servidor.
+    Porém, do lado dos testes, na obtenção das respostas é lançado um erro que não consegui solucionar a tempo, e por isso não implementei a finalização dos testes.
+    
+4 - Em relação à regra de negócio, não entendi plenamente a solicitação de reembolso da ordem ou de um item da ordem. Sendo assim, a implementei para
+    a ordem, gerando um status para este caso, que, quando dentro da regra prevista, o status da ordem é alterado para REFUND.
+    
+5 - Relacionada ao item 3, não criei o reembolso para um item da ordem. Entretanto, se fosse implementá-lo, criaria um status para o item da ordem,
+    onde no curso normal de sua inclusão este status estaria como NORMAL, e em caso de reembolso, o trocaria para REFUND.
