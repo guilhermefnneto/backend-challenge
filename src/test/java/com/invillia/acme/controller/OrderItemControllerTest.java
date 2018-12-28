@@ -29,7 +29,7 @@ public class OrderItemControllerTest {
 		
 		URI uri = new URI(baseUrl + "create?orderid=1");
 
-		OrderItem orderItem = new OrderItem("Chave de roda", new BigDecimal(80.00), new BigInteger("2"));
+		OrderItem orderItem = new OrderItem("Macaco", new BigDecimal(150.00), new BigInteger("1"));
 		
 		HttpEntity<OrderItem> request = new HttpEntity<>(orderItem);
 		

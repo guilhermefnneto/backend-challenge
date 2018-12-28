@@ -23,7 +23,7 @@ public class StoreControllerTest {
 		
 	
 	// Create Store
-//    @Test
+    @Test
     public void testCreateStore() throws URISyntaxException {
     	RestTemplate rest = new RestTemplate();
     	
@@ -55,7 +55,7 @@ public class StoreControllerTest {
     
     
     // Read Store by parameters
-    @Test
+//    @Test
     public void testReadStoreByParameters() throws URISyntaxException {
     	RestTemplate rest = new RestTemplate();
     	    	
