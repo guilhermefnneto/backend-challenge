@@ -8,13 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.invillia.acme.model.Order;
 import com.invillia.acme.model.OrderItem;
 import com.invillia.acme.service.OrderItemService;
+import com.invillia.acme.service.OrderService;
 
 @Controller
-@RequestMapping(name="/orderitem")
+@RequestMapping("/orderitem")
 public class OrderItemController {
 
+	
+	@Autowired
+	private OrderService orderService;
 	
 	@Autowired
 	private OrderItemService orderItemService;
@@ -22,9 +27,18 @@ public class OrderItemController {
 	
 	@RequestMapping(value="/create", method=RequestMethod.POST)
 	public ModelAndView create(@RequestParam("orderid") Long orderid, @RequestBody OrderItem pOrderItem) {
-		System.out.println("orderid="+orderid);
+		ModelAndView mv = new ModelAndView();
 		
-		return null;
+		Order order = orderService.read(new Order(orderid));
+		if (order != null) {
+			pOrderItem.setOrder(order);
+			boolean created = orderItemService.create(pOrderItem);
+			mv.addObject("created", created);
+		} else {
+			mv.addObject("created", "order not found");
+		}
+		
+		return mv;
 	}
 	
 }
